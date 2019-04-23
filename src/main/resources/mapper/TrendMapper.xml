@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.solicitude.mapper.TrendMapper" >
+  <resultMap id="BaseResultMap" type="com.example.solicitude.pojo.Trend" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="active_id" property="activeId" jdbcType="VARCHAR" />
+    <result column="blanck_space_one" property="blanckSpaceOne" jdbcType="VARCHAR" />
+    <result column="blanck_space_three" property="blanckSpaceThree" jdbcType="VARCHAR" />
+    <result column="blanck_space_two" property="blanckSpaceTwo" jdbcType="VARCHAR" />
+    <result column="change_time" property="changeTime" jdbcType="VARCHAR" />
+    <result column="given_name" property="givenName" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, active_id, blanck_space_one, blanck_space_three, blanck_space_two, change_time, 
+    given_name, user_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.solicitude.pojo.TrendExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from trend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from trend
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from trend
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.solicitude.pojo.TrendExample" >
+    delete from trend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.solicitude.pojo.Trend" >
+    insert into trend (id, active_id, blanck_space_one, 
+      blanck_space_three, blanck_space_two, change_time, 
+      given_name, user_id)
+    values (#{id,jdbcType=BIGINT}, #{activeId,jdbcType=VARCHAR}, #{blanckSpaceOne,jdbcType=VARCHAR}, 
+      #{blanckSpaceThree,jdbcType=VARCHAR}, #{blanckSpaceTwo,jdbcType=VARCHAR}, #{changeTime,jdbcType=VARCHAR}, 
+      #{givenName,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.solicitude.pojo.Trend" >
+    insert into trend
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="activeId != null" >
+        active_id,
+      </if>
+      <if test="blanckSpaceOne != null" >
+        blanck_space_one,
+      </if>
+      <if test="blanckSpaceThree != null" >
+        blanck_space_three,
+      </if>
+      <if test="blanckSpaceTwo != null" >
+        blanck_space_two,
+      </if>
+      <if test="changeTime != null" >
+        change_time,
+      </if>
+      <if test="givenName != null" >
+        given_name,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="activeId != null" >
+        #{activeId,jdbcType=VARCHAR},
+      </if>
+      <if test="blanckSpaceOne != null" >
+        #{blanckSpaceOne,jdbcType=VARCHAR},
+      </if>
+      <if test="blanckSpaceThree != null" >
+        #{blanckSpaceThree,jdbcType=VARCHAR},
+      </if>
+      <if test="blanckSpaceTwo != null" >
+        #{blanckSpaceTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTime != null" >
+        #{changeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="givenName != null" >
+        #{givenName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.solicitude.pojo.TrendExample" resultType="java.lang.Integer" >
+    select count(*) from trend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update trend
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.activeId != null" >
+        active_id = #{record.activeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blanckSpaceOne != null" >
+        blanck_space_one = #{record.blanckSpaceOne,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blanckSpaceThree != null" >
+        blanck_space_three = #{record.blanckSpaceThree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blanckSpaceTwo != null" >
+        blanck_space_two = #{record.blanckSpaceTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.changeTime != null" >
+        change_time = #{record.changeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.givenName != null" >
+        given_name = #{record.givenName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update trend
+    set id = #{record.id,jdbcType=BIGINT},
+      active_id = #{record.activeId,jdbcType=VARCHAR},
+      blanck_space_one = #{record.blanckSpaceOne,jdbcType=VARCHAR},
+      blanck_space_three = #{record.blanckSpaceThree,jdbcType=VARCHAR},
+      blanck_space_two = #{record.blanckSpaceTwo,jdbcType=VARCHAR},
+      change_time = #{record.changeTime,jdbcType=VARCHAR},
+      given_name = #{record.givenName,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.solicitude.pojo.Trend" >
+    update trend
+    <set >
+      <if test="activeId != null" >
+        active_id = #{activeId,jdbcType=VARCHAR},
+      </if>
+      <if test="blanckSpaceOne != null" >
+        blanck_space_one = #{blanckSpaceOne,jdbcType=VARCHAR},
+      </if>
+      <if test="blanckSpaceThree != null" >
+        blanck_space_three = #{blanckSpaceThree,jdbcType=VARCHAR},
+      </if>
+      <if test="blanckSpaceTwo != null" >
+        blanck_space_two = #{blanckSpaceTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTime != null" >
+        change_time = #{changeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="givenName != null" >
+        given_name = #{givenName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.solicitude.pojo.Trend" >
+    update trend
+    set active_id = #{activeId,jdbcType=VARCHAR},
+      blanck_space_one = #{blanckSpaceOne,jdbcType=VARCHAR},
+      blanck_space_three = #{blanckSpaceThree,jdbcType=VARCHAR},
+      blanck_space_two = #{blanckSpaceTwo,jdbcType=VARCHAR},
+      change_time = #{changeTime,jdbcType=VARCHAR},
+      given_name = #{givenName,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
