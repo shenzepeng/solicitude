@@ -51,8 +51,8 @@ public class ElderController {
     @ApiOperation("通过userId查找Elder，返回list")
     @GetMapping("/findElderByUserId.action")
     public SzpJsonResult findElderByUserId(long userId){
-        Elder elderById = elderService.findElderById(userId);
-        return SzpJsonResult.ok(elderById);
+        List<Elder> elderByUserId = elderService.findElderByUserId(userId);
+        return SzpJsonResult.ok(elderByUserId);
     }
     //通过姓名查找Elder，返回list
     @ApiOperation("通过姓名查找Elder，返回list")
@@ -73,5 +73,11 @@ public class ElderController {
     public SzpJsonResult findAllElder(){
         List<Elder> allElder = elderService.findAllElder();
         return SzpJsonResult.ok(allElder);
+    }
+    @ApiOperation("通过userId和company找到老人list")
+    @GetMapping("/findElderByUserIdAndCompany.action")
+    public SzpJsonResult findElderByUserIdAndCompany(Long userId,String company){
+        List<Elder> elderByUserIdAndCompany = elderService.findElderByUserIdAndCompany(userId, company);
+        return SzpJsonResult.ok(elderByUserIdAndCompany);
     }
 }

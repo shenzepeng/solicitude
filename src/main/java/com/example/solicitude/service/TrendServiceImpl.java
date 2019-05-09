@@ -66,4 +66,13 @@ public class TrendServiceImpl implements TrendService {
         List<Trend> trends = trendMapper.selectByExample(trendExample);
         return trends;
     }
+
+    @Override
+    public List<Trend> findTrendByElderId(String elderId) {
+        TrendExample trendExample=new TrendExample();
+        trendExample.createCriteria()
+                .andBlanckSpaceOneEqualTo(elderId);
+        List<Trend> trends = trendMapper.selectByExample(trendExample);
+        return trends;
+    }
 }

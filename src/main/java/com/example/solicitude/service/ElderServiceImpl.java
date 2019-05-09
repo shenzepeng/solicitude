@@ -73,4 +73,14 @@ public class ElderServiceImpl implements ElderService {
         List<Elder> elders = elderMapper.selectByExample(elderExample);
         return elders;
     }
+
+    @Override
+    public List<Elder> findElderByUserIdAndCompany(Long userId, String company) {
+        ElderExample elderExample=new ElderExample();
+        elderExample.createCriteria()
+                .andCompanyEqualTo(company)
+                .andUserIdEqualTo(userId);
+        List<Elder> elders = elderMapper.selectByExample(elderExample);
+        return elders;
+    }
 }

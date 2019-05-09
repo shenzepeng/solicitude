@@ -118,4 +118,22 @@ public class Department {
     public void setUserId(Long userId) {
         this.userId = userId;
     }
+
+    @Override
+    public String toString() {
+        return "Department{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", departmentName='" + departmentName + '\'' +
+                ", departmentAddress='" + departmentAddress + '\'' +
+                ", departmentIfo='" + departmentIfo + '\'' +
+                ", departmentAptitude='" + departmentAptitude + '\'' +
+                ", departmentPhoneNumber='" + departmentPhoneNumber + '\'' +
+                ", departmentCognition='" + departmentCognition + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", blanckSpaceOne='" + blanckSpaceOne + '\'' +
+                ", blanckSpaceTwo='" + blanckSpaceTwo + '\'' +
+                ", blanckSpaceThree='" + blanckSpaceThree + '\'' +
+                '}';
+    }
 }

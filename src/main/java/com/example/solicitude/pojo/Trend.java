@@ -11,7 +11,9 @@ public class Trend {
     //动态发生时间
     private String changeTime;
     //多余字段
+    //老人的主键id
     private String blanckSpaceOne;
+    //存动态内容
     private String blanckSpaceTwo;
     private String blanckSpaceThree;
 

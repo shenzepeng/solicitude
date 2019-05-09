@@ -62,5 +62,10 @@ public class TrendController {
         List<Trend> trendByUserId = trendService.findTrendByUserId(userId);
         return SzpJsonResult.ok(trendByUserId);
     }
-
+    @ApiOperation("通过老人的主键id找到Trend，表中的blanckSpaceOne存这个")
+    @GetMapping("/findTrendByElderId.action")
+    public SzpJsonResult findTrendByElderId(String elderId){
+        List<Trend> trendByElderId = trendService.findTrendByElderId(elderId);
+        return SzpJsonResult.ok(trendByElderId);
+    }
 }

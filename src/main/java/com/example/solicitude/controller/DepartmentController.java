@@ -24,9 +24,16 @@ public class DepartmentController {
     @ApiOperation("添加department")
     @PostMapping("/insertDepartment.action")
     public SzpJsonResult insertDepartment(@RequestBody Department department) {
+        Long userId = department.getUserId();
+        List<Department> departmentByUserId = departmentService.findDepartmentByUserId(userId);
+        if (departmentByUserId==null||departmentByUserId.size()==0){
+            departmentService.insertDepartment(department);
+            return SzpJsonResult.ok();
+        }else {
+            return SzpJsonResult.errorMsg("已经添加过了，无法再添加");
+        }
 
-        departmentService.insertDepartment(department);
-        return SzpJsonResult.ok();
+
     }
 
     @ApiOperation("通过主键id删除department")
@@ -61,8 +68,12 @@ public class DepartmentController {
     @GetMapping("/findDepartmentByUserId.action")
     public SzpJsonResult findDepartmentByUserId(long userId) {
 
-        Department departmentById = departmentService.findDepartmentById(userId);
-        return SzpJsonResult.ok(departmentById);
+        List<Department> departmentByUserId = departmentService.findDepartmentByUserId(userId);
+        if (departmentByUserId!=null&&departmentByUserId.size()!=0) {
+            return SzpJsonResult.ok(departmentByUserId.get(0));
+        }else {
+            return SzpJsonResult.errorMsg("没有找到");
+        }
     }
 
     //通过机构名称找到

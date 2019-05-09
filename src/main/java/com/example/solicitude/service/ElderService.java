@@ -23,4 +23,6 @@ public interface ElderService {
     List<Elder> findElderByCompany(String company);
     //显示所有Elder
     List<Elder> findAllElder();
+
+    List<Elder> findElderByUserIdAndCompany(Long userId,String company);
 }

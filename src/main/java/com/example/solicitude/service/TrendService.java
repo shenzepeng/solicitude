@@ -21,4 +21,5 @@ public interface TrendService {
     List<Trend> findTrendByUserId(long userId);
     //显示所有Trend
     List<Trend> findAllTrend();
+    List<Trend> findTrendByElderId(String elderId);
 }

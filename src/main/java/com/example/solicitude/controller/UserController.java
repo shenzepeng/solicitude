@@ -58,7 +58,10 @@ public class UserController {
     @GetMapping("/findUserByUsername.action")
     public SzpJsonResult findUserByUsername(String username){
         List<User> userByUsername = userService.findUserByUsername(username);
-        return SzpJsonResult.ok(userByUsername);
+        if (userByUsername!=null&&userByUsername.size()!=0){
+            return SzpJsonResult.ok(userByUsername.get(0));
+        }
+        return SzpJsonResult.ok("没有该用户");
     }
     //登录
     @ApiOperation("登录")
@@ -67,7 +70,7 @@ public class UserController {
                                                        String password){
         List<User> userByUsernameAndPassword = userService.findUserByUsernameAndPassword(username, password);
         if (userByUsernameAndPassword.size()!=0&&userByUsernameAndPassword!=null) {
-            return SzpJsonResult.ok(userByUsernameAndPassword);
+            return SzpJsonResult.ok(userByUsernameAndPassword.get(0));
         }else {
             return SzpJsonResult.errorMsg("请重新检查密码");
         }
